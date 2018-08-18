@@ -1,0 +1,29 @@
+@import './default.less';
+
+.clearfiz{
+    &::after{
+        content:'';
+        clear: both;
+        display: block;
+        visibility: hidden;
+    }
+}
+
+.container{
+    .header{
+        display: flex;
+        height: calc(10vh);
+        align-items: center;
+        justify-content: space-between;
+    }
+    .main{
+        box-sizing: border-box;
+        padding: 0 50px;
+        .content{
+            margin: 16px 0;
+            background: #fff;
+            height: calc(87vh);
+        }        
+    }
+
+}

@@ -1,0 +1,20 @@
+/* notice */
+.notice .i-icon{
+  color: #fff!important;
+}
+.content-img{
+  width: 100%;
+}
+.header-image{
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  margin-right: 32rpx;
+}
+.header-date{
+  font-size: 24rpx;
+  color: #80848f;
+}
+.content-main{
+  font-size: 28rpx;
+}

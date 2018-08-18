@@ -1,0 +1,27 @@
+<!-- <i-panel title="关闭 通告栏"> -->
+    <i-notice-bar icon="systemprompt" closable i-class='notice'>
+        这是属于我们两个人的博客
+    </i-notice-bar>
+<!-- </i-panel>   -->
+<card>
+  <image slot="header-image" class='header-image'  src='https://i.loli.net/2017/08/21/599a521472424.jpg'>
+    </image>
+    <view slot='header-date' class='header-date'>2018-07-28</view>
+  <image slot="content-image" class='content-img'  src='https://i.loli.net/2017/08/21/599a521472424.jpg' mode='center'>
+  </image>
+  <view slot='content-main' class='content-main'>
+    123
+  </view>
+</card>
+<i-card full i-class="card-demo" thumb='https://i.loli.net/2017/08/21/599a521472424.jpg'>
+     <image slot="content" class='content-img'  src='https://i.loli.net/2017/08/21/599a521472424.jpg' mode='center'>
+    </image>
+     <view slot='content'>123</view>
+    <view slot="footer">尾部内容</view>
+</i-card> 
+<i-tab-bar current="{{ current }}" bindchange="handleChange" fixed>
+    <i-tab-bar-item key="homgpage" icon="activity" current-icon="activity_fill" title="首页"></i-tab-bar-item>
+    <i-tab-bar-item key="group" icon="label" current-icon="label_fill" title="发现"></i-tab-bar-item>
+    <i-tab-bar-item key="notice" icon="remind" current-icon="remind_fill" count="3" title="通知"></i-tab-bar-item>
+    <i-tab-bar-item key="mine" icon="mine" current-icon="mine_fill" dot title="我的"></i-tab-bar-item>
+</i-tab-bar>

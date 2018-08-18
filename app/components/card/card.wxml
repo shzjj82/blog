@@ -1,0 +1,11 @@
+<view class='card'>
+  <view class='card-header'>
+    <slot name='header-image' />
+    <slot name='header-date' />
+  </view>
+  <view class='content'>
+    <slot name='content-image' />
+    <slot name='content-main' />
+    <slot name='content-extra' />
+  </view>
+</view>
