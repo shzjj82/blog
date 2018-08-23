@@ -26,6 +26,16 @@ class HomeController extends Controller {
             success: true,
         }
     }
+
+    async create() {
+        let { content, title } = this.ctx.query;
+        let date = new Date().getTime();
+        let response = await this.ctx.model.Note.create({ title: title, content: content, update_date: date, create_date: date });
+        this.ctx.status = 201;
+        this.ctx.body = {
+            success: true
+        }
+    }
 }
 
 module.exports = HomeController;
