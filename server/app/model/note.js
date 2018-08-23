@@ -7,7 +7,7 @@ module.exports = app => {
         author: { type: Schema.Types.ObjectId, ref: 'User' },
         create_date: { type: String },
         update_date: { type: String },
-    })
+    }, { versionKey: false })
 
     return mongoose.model('Note', Notesschema, 'notes');
 }
