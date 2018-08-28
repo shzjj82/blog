@@ -16,6 +16,15 @@ module.exports = appInfo => {
     }
   }
 
+  config.redis = {
+    client: {
+      port: 6379,          // Redis port
+      host: '47.96.78.61',   // Redis host
+      password: '',
+      db: 0,
+    },
+  }
+
   // add your config here
   config.middleware = [];
 
