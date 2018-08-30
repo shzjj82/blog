@@ -5,10 +5,10 @@
  */
 module.exports = app => {
   const { router, controller } = app;
-  const getToken = app.middleware.getToken({}, app);
+  const checkToken = app.middleware.checkToken({}, app);
   router.post('/login', controller.user.login);
-  router.get('/note/query', getToken, controller.note.query);
-  router.post('/note', getToken, controller.note.find);
-  router.post('/note/delete', getToken, controller.note.delete);
-  router.post('/note/create', getToken, controller.note.create);
+  router.get('/note/query', checkToken, controller.note.query);
+  router.post('/note', checkToken, controller.note.find);
+  router.post('/note/delete', checkToken, controller.note.delete);
+  router.post('/note/create', checkToken, controller.note.create);
 };
