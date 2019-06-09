@@ -48,6 +48,7 @@ export default {
   .forget-wrapper{
       display: flex;
       justify-content: space-between;
+      line-height: 40.5px;
       .forget{
           color: grey;
           font-size: 14px;

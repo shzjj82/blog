@@ -12,7 +12,7 @@ export default new Router({
       name: 'login',
       component: Login,
       children:[{
-        path:'/',
+        path:'',
         name:'form-login',
         component:()=>import('@/components/FormLogin')
       },{
