@@ -1,29 +1,17 @@
 'use strict';
 
 const Controller = require('egg').Controller;
+const CONFIG = require('../common/config');
 
-class HomeController extends Controller {
+class NoteController extends Controller {
     /**
      * 文章列表 已Ok
      */
     async query() {
+        let { app , ctx } = this;
         let { page, size } = this.ctx.query;
-        let response = await this.ctx.model.Note.find().skip((page / 1) * size / 1).limit(size / 1).select().populate({ path: 'author', select: 'nickname -_id' }).exec();
-        this.ctx.status = 201;
-        this.ctx.body = {
-            success: true,
-            list: response
-        }
-    }
-    async find() {
-        let { ctx } = this;
-        let { id } = ctx.query;
-        let response = await ctx.model.findOne({ _id: id }).select('-_id').exec();
-        ctx.status = 201;
-        ctx.body = {
-            success: true,
-            ...response
-        }
+        let result = await this.ctx.model.Note.find().skip((page / 1) * size / 1).limit(size / 1).select().populate({ path: 'author', select: 'nickname -_id' }).exec();
+        return ctx.body = ctx.helper.getSuccessResponse({code:CONFIG.NOTE.ERR_OK, data:{list:result}});
     }
 
     /**
@@ -66,4 +54,4 @@ class HomeController extends Controller {
     }
 }
 
-module.exports = HomeController;
+module.exports = NoteController;
