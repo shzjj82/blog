@@ -1,48 +1,29 @@
 'use strict';
-const jwt = require('jsonwebtoken');
-const fs = require('fs')
-const path = require('path')
 const Controller = require('egg').Controller;
-function generateToken(data, time) {
-  let created = Math.floor(Date.now() / 1000);
-  let cert = fs.readFileSync(path.join(__dirname, '../public/rsa_private_key.pem'));//私钥
-  let token = jwt.sign({
-    data,
-    exp: created + time
-  }, cert, { algorithm: 'RS256' });
-  return token;
-}
+const CONFIG = require('../common/config');
 
-function verifyToken(token) {
-  let cert = fs.readFileSync(path.join(__dirname, '../public/rsa_public_key.pem'));//公钥
-  let res = ''
-  try {
-    let result = jwt.verify(token, cert, { algorithms: ['RS256'] }) || {};
-    let { exp, iat } = result, current = Math.floor(Date.now() / 1000);
-    if (current <= exp) {
-      res = result.data || {};
-    }
-  } catch (e) {
-    console.log(e);
-  }
-  return res;
-}
-
-class HomeController extends Controller {
+class Usercontroller extends Controller {
   async login() {
-    let { app, ctx } = this;
-    let { query, request } = ctx;
-    let { username, password } = request.body;
-    let user = await ctx.model.User.findOne({ email: username, password }).select('-password').exec();
-    let time = 24 * 60 * 1000 * 60;
-    let token = generateToken({ user: user, time: Date.now() + time }, time);
-    app.redis.set(username, token);
-    ctx.body = {
-      success: true,
-      token: token
+    let { app, ctx, config } = this;
+    let { username, password } = ctx.request.body;
+    try {
+      ctx.validate({
+        username: { type: 'email' },
+        password: { type: 'password' },
+      });
+      let user = await ctx.model.User.findOne({ username, password }).select('-password').exec();
+      user = JSON.parse(JSON.stringify(user));
+      if (!user) {
+        throw Error('请输入正确的账号与密码');
+      }
+      let token = ctx.helper.getToken();
+      app.redis.set(token, user);
+      app.redis.expire(token,config.LOGON_DURATION);
+      return ctx.body = ctx.helper.getSuccessResponse({msg:'登录成功',code:CONFIG.USER.ERR_OK,data:{token}})
+    }catch(err){
+      return ctx.body = ctx.helper.getFailedResponse({ msg: '请输入正确的账号与密码', code: CONFIG.USER.ERR_NOK });
     }
-      ;
   }
 }
 
-module.exports = HomeController;
+module.exports = Usercontroller;
