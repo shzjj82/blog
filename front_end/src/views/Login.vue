@@ -20,7 +20,7 @@
             </g>
           </svg>
         </div>
-        <div class="title">{{currentStates}}知乎，发现更多可信赖的解答</div>
+        <div class="title">{{title}}知乎，发现更多可信赖的解答</div>
       </div>
       <router-view></router-view>
       <div class="footer">
@@ -41,14 +41,17 @@ export default {
     footer() {
       return this.isRegister ? "已有帐号？" : "没有帐号？";
     },
+    title(){
+      return this.isRegister ? "注册":"登录" ;
+    },
     currentStates() {
       return this.isRegister ? "登录" : "注册";
     }
   },
   methods: {
     toggle() {
-      this.isRegister = !this.isRegister;
       let url = this.isRegister?'/':'/register'
+      this.isRegister = !this.isRegister;
       this.$router.push(url);
     }
   }
@@ -56,8 +59,11 @@ export default {
 </script>
 <style lang="less" scoped>
 .login-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
   width: 432px;
-  margin: 0 auto;
   text-align: center;
   .header {
     padding: 30px 0 5px;
