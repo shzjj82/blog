@@ -50,7 +50,7 @@ export default {
   },
   methods: {
     toggle() {
-      let url = this.isRegister?'/':'/register'
+      let url = this.isRegister?'/user':'/user/register'
       this.isRegister = !this.isRegister;
       this.$router.push(url);
     }
