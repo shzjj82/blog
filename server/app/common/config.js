@@ -3,7 +3,8 @@ const CONFIG = {
   USER: {
     ERR_OK: 'U000',
     ERR_NOK: 'U100',
-    LOST_TOKEN:'U101'
+    LOST_TOKEN:'U101',
+    EXIST:'U201',
   },
   NOTE:{
     ERR_OK:'N000',
