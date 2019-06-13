@@ -1,5 +1,6 @@
 export default {
     user:{
-        login:()=>`/api/login`
+        login:()=>`/api/login`,
+        register:()=>`/api/register`
     }
 }
