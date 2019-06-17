@@ -34,7 +34,9 @@
       <div class="header-right-container">
         <i class="el-icon-message icon"></i>
         <i class="el-icon-chat-round icon"></i>
-        <div class="avater"></div>
+        <div class="avater">
+          <img src='https://pic3.zhimg.com/v2-0382a54ae1dd7ee71cbe5daf1a761c2d_is.jpg'/> 
+        </div>
       </div>
     </div>
   </div>
@@ -106,6 +108,12 @@ export default {
       .icon {
         font-size: 20px;
         margin-right: 40px;
+      }
+      .avater{
+        img{
+          width:30px;
+          height:30px;
+        }
       }
     }
   }

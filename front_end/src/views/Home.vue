@@ -3,7 +3,7 @@
     <main-header></main-header>
     <div class="main inner">
       <el-row :gutter="10">
-        <el-col :span="16" class="left">
+        <el-col :span="17" class="left">
           <el-menu :default-active="activeIndex" class="el-menu" mode="horizontal">
             <el-menu-item index="1">推荐</el-menu-item>
             <el-menu-item index="2">关注</el-menu-item>
@@ -13,13 +13,9 @@
             <router-view></router-view>
           </div>
         </el-col>
-        <el-col :span="8">
+        <el-col :span="7">
           <global-write-card />
-          <div class="global-write-sidebar">
-            <div class="global-write-nav">
-              <ul class="global-sideBar-navList"></ul>
-            </div>
-          </div>
+          <global-write-side-bar />
         </el-col>
       </el-row>
     </div>
@@ -29,6 +25,7 @@
 <script>
 import MainHeader from "@/components/mainHeader";
 import GlobalWriteCard from '@/components/globalWriteCard';
+import GlobalWriteSideBar from '@/components/globalWriteSideBar';
 export default {
   name: "home",
   data() {
@@ -37,7 +34,7 @@ export default {
     };
   },
   components: {
-    MainHeader,GlobalWriteCard
+    MainHeader,GlobalWriteCard,GlobalWriteSideBar
 
   }
 };
